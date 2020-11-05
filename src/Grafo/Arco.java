@@ -16,6 +16,11 @@ public class Arco {
 		this.kilomentros = kilomentros;
 		this.tiempo = tiempo;
 	}
+
+	@Override
+	public String toString() {
+		return "K." + kilomentros + ", T" + tiempo ;
+	}
 	
 	
 }

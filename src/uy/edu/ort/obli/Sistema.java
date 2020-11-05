@@ -2,11 +2,12 @@ package uy.edu.ort.obli;
 
 import uy.edu.ort.obli.Retorno.Resultado;
 import componentes.*;
-import componentes.Usuario;
+import Grafo.*;
 public class Sistema implements ISistema {
 	
 	private static Sistema sistema;
 	private ABBUsuario Usuarios;
+	private GrafoMatriz Grafo;
 	
 	public static Sistema getSistema() {
 		if(sistema == null) {
@@ -20,6 +21,7 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno inicializarSistema(int maxPuntos) {
 		Usuarios = new ABBUsuario();
+		Grafo = new GrafoMatriz(maxPuntos);
 		return new Retorno(Resultado.OK);
 	}
 
@@ -44,7 +46,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno buscarUsuario(String email) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		return Usuarios.buscarUsuario(email);
 	}
 
 	@Override
@@ -61,41 +63,41 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno registrarEsquina(double coordX, double coordY) {
+		return Grafo.altaEsquina(coordX, coordY);
+	}
+
+	@Override
+	public Retorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int metros,int tiempo) {
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 
 	@Override
-	public Retorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int metros) {
+	public Retorno registrarDelivery(String cedula, double coordX, double coordY) {
+		return Grafo.altaDelivery(coordX, coordY,cedula);
+	}
+
+	@Override
+	public Retorno registrarMovil(String matricula, double coordX, double coordY) {
+		return Grafo.altaMovil(coordX, coordY,matricula);
+	}
+
+	@Override
+	public Retorno movilMasCercano(double coordXi, double coordYi) {
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 
 	@Override
-	public Retorno registrarDelivery(String cedula, Double coordX, Double coordY) {
+	public Retorno deliveryMasCercano(double coordXi, double coordYi) {
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 
 	@Override
-	public Retorno registrarMovil(String matricula, Double coordX, Double coordY) {
+	public Retorno caminoMinimoMovil(double coordXi, double coordYi, double coordXf, double coordYf) {
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 
 	@Override
-	public Retorno movilMasCercano(Double coordXi, Double coordYi) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
-	}
-
-	@Override
-	public Retorno deliveryMasCercano(Double coordXi, Double coordYi) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
-	}
-
-	@Override
-	public Retorno caminoMinimoMovil(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
-	}
-
-	@Override
-	public Retorno caminoMinimoDelivery(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
+	public Retorno caminoMinimoDelivery(double coordXi, double coordYi, double coordXf, double coordYf) {
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 

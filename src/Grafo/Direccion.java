@@ -8,6 +8,12 @@ public abstract class Direccion {
 		codX=X;
 		codY=Y;
 	}
+
+	
+	public boolean soy(double codX, double codY) {
+		return this.codX==codX&&this.codY==codY;
+	}
+	
 	
 	
 }

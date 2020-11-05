@@ -1,5 +1,5 @@
 package componentes;
-
+import uy.edu.ort.obli.Retorno;
 public class ABBUsuario {
 
 	//Atributos ABBUsuario
@@ -48,27 +48,27 @@ public class ABBUsuario {
 		}
 	}
 	
-	
-	public Usuario buscarUsuario(String email) {
+	public Retorno buscarUsuario(String email) {
 		if(this.raiz == null) {
 			return null;
 		}
 		//Creo un usuario auxiliar para facilitar las comparaciones
+		
 		Usuario aux = new Usuario(email);
-		return buscarUsuario(aux, this.raiz);
+		return buscarUsuario(aux, this.raiz,1);
 	}
 	
-	private Usuario buscarUsuario(Usuario u, NodoUsuario nu) {
+	private Retorno buscarUsuario(Usuario u, NodoUsuario nu,int pasos) {
 		if(nu == null) {
 			return null;
 		}
 		if(nu.getUsu().equals(u)) {
-			return nu.getUsu();
+			return new Retorno(Retorno.Resultado.OK,pasos,nu.getUsu().toString());
 		}
 		if(u.compareTo(nu.getUsu()) > 0) {
-			return buscarUsuario(u, nu.getDrc());
+			return buscarUsuario(u, nu.getDrc(),pasos+1);
 		}else {
-			return buscarUsuario(u, nu.getIzq());
+			return buscarUsuario(u, nu.getIzq(),pasos+1);
 		}
 	}
 	
