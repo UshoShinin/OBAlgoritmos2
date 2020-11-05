@@ -20,11 +20,6 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno inicializarSistema(int maxPuntos) {
 		Usuarios = new ABBUsuario();
-		//ESTOS NO SERIAN NECESARIOS
-		//registrarUsuario("pepe@gmail.com","Pepe","PepeCapo1");
-		//registrarUsuario("pepa@gmail.com","Pepa","PepeCapo1");
-		//registrarUsuario("ana12@gmail.com","Ana","Anita");
-		//registrarUsuario("godOfThunder@gmail.com","Zeus","Rayito");
 		return new Retorno(Resultado.OK);
 	}
 
@@ -36,7 +31,6 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno registrarUsuario(String email, String nombre, String password) {
 		//valido el mail 
-		System.out.println(email + "//" + Usuario.validarMail(email));
 		if(!Usuario.validarMail(email)) {
 			return new Retorno(Resultado.ERROR_1);
 		}
@@ -57,7 +51,6 @@ public class Sistema implements ISistema {
 	public Retorno listarUsuarios() {
 		//este metodo nos tendria que devolver un string que es el mensaje que tenemos que mostrar
 		String ret =  Usuarios.Listar();
-		System.out.println(ret);
 		return new Retorno(Resultado.OK, 0, ret);
 	}
 

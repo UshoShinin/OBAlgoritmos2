@@ -10,7 +10,12 @@ public class ParaProbar {
 		
 		
 		sistema.inicializarSistema(10);
-		//sistema.listarUsuarios();
+		sistema.registrarUsuario("pepe@gmail.com","Pepe","PepeCapo1");
+		sistema.registrarUsuario("pepa@gmail.com","Pepa","PepeCapo1");
+		sistema.registrarUsuario("ana12@gmail.com","Ana","Anita");
+		sistema.registrarUsuario("godOfThunder@gmail.com","Zeus","Rayito");
+		System.out.println(sistema.listarUsuarios().valorString);
+		
 		
 		Retorno a = sistema.registrarUsuario("a@a", "pepe", "1234");
 		System.out.println(a);
