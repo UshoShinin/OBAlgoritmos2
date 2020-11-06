@@ -1,7 +1,6 @@
 package uy.edu.ort.obli;
 
 
-
 public class ParaProbar {
 	
 	public static void main(String[] args) {
@@ -39,17 +38,33 @@ public class ParaProbar {
 		
 		System.out.println("-----------");
 		
-		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
-		System.out.println(sistema.registrarTramo(1, 1, 2, 2, 10, 10));
+		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 1));
+		System.out.println(sistema.registrarTramo(1, 1, 2, 1, 1, 1));
+		System.out.println(sistema.registrarTramo(1, 2, 1, 3, 1, 1));
+		System.out.println(sistema.registrarTramo(1, 2, 2, 2, 1, 1));
+		System.out.println(sistema.registrarTramo(1, 3, 2, 3, 1, 1));
+		System.out.println(sistema.registrarTramo(2, 1, 2, 2, 1, 1));
+		System.out.println(sistema.registrarTramo(2, 1, 3, 1, 1, 1));
+		System.out.println(sistema.registrarTramo(2, 2, 2, 3, 1, 1));
+		System.out.println(sistema.registrarTramo(2, 3, 3, 3, 1, 1));
+		System.out.println(sistema.registrarTramo(3, 1, 3, 2, 1, 1));
+		System.out.println(sistema.registrarTramo(3, 2, 2, 2, 1, 1));
+		System.out.println(sistema.registrarTramo(3, 2, 3, 3, 1, 1));
 		
-		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 0, 10));
+		sistema.caminoMinimoMovil(1, 1, 3, 1);
 		
-		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 10, 0));
+		//System.out.println(sistema.registrarTramo(1, 1, 1, 2, 0, 10));
 		
-		System.out.println(sistema.registrarTramo(4, 1, 1, 2, 10, 10));
-		System.out.println(sistema.registrarTramo(1, 4, 1, 2, 10, 10));
+		//System.out.println(sistema.registrarTramo(1, 1, 1, 2, 10, 0));
 		
-		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
+		//System.out.println(sistema.registrarTramo(4, 1, 1, 2, 10, 10));
+		//System.out.println(sistema.registrarTramo(1, 4, 1, 2, 10, 10));
+		
+		//System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
+		
+		System.out.println("-----------");
+		
+		
 	}
 	
 }

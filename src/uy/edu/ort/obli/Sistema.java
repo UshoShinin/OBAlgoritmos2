@@ -93,6 +93,8 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno caminoMinimoMovil(double coordXi, double coordYi, double coordXf, double coordYf) {
+		//esto simplemente es para probar, asi que veamos que pasa. Obviamente vamos a cambiarlo con ivan el ssabado
+		System.out.println(Grafo.costoCaminoMinimo(coordXi, coordYi, coordXf, coordYf)); 
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 

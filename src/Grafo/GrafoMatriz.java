@@ -113,5 +113,61 @@ public class GrafoMatriz {
 		}
 	}
 	
+	//devuelve la posicion en el array de direcciones de la direccion con un movil mas cercana a la direccion de inicio
+	public int costoCaminoMinimo(double codXi, double codYi, double codXf, double codYf) {
+		int[] metros = new int[cantDir];
+		//seguramente a este array de direcciones le tengo que ir agregando tambien los que fui pasando cosa de saber cuantos fueron
+		//Direccion[] anteriores = new Direccion[cantDir];
+		Direccion[] visitados = new Direccion[cantDir];
+		int posDireccionInicial = buscarDireccion(codXi, codYi);
+		int posDireccionDestino = buscarDireccion(codXf, codYf);
+		//Arranque
+		visitados[posDireccionInicial] = Nodos[posDireccionInicial];
+		for (int i = 0; i < cantDir; i++) {
+			if(MatrizCostos[posDireccionInicial][i].existe) {
+				metros[i] = MatrizCostos[posDireccionInicial][i].metros;
+			}else {
+				metros[i] = Integer.MAX_VALUE;
+			}
+		}
+		//Visitamos todos
+		while(direccionesSinVisitar(visitados)) {
+			int w = direccionMasBarataSinVisitar(visitados, metros);
+			if(w == -1) {
+				return -1;
+			}
+			visitados[w] = Nodos[w];
+			//aca hay que ver de si al visitar W tengo que agregar el que estaba antes al array de anteriores para saber a cuantos fui
+			for (int i = 0; i < cantDir; i++) {
+				if(MatrizCostos[w][i].existe && visitados[i] == null) {
+					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);
+				}
+			}
+		}
+		//visite todas las direcciones
+		return metros[posDireccionDestino];
+	}
+	
+	
+	public boolean direccionesSinVisitar(Direccion[] visitados) {
+		for (int i = 0; i < visitados.length; i++) {
+			if(visitados[i] == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	public static int direccionMasBarataSinVisitar(Direccion[] visitados, int[]  costos) {
+		int costoMinimo = Integer.MAX_VALUE;
+		int posMasBarata = -1;
+		for (int i = 0; i < visitados.length; i++) {
+			if(visitados[i] == null && costos[i] <= costoMinimo) {
+				posMasBarata = i;
+			}
+		}
+		return posMasBarata;
+	}
 }
 
