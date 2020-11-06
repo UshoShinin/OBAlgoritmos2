@@ -68,7 +68,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno registrarTramo(double coordXi, double coordYi, double coordXf, double coordYf, int metros,int tiempo) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		return Grafo.altaTramo(coordXi, coordYi, coordXf, coordYf, metros, tiempo);
 	}
 
 	@Override

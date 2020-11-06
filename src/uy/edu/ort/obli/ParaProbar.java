@@ -35,6 +35,21 @@ public class ParaProbar {
 		
 		System.out.println(sistema.registrarEsquina(1, 4));
 		System.out.println(sistema.registrarEsquina(1, 3));
+		
+		
+		System.out.println("-----------");
+		
+		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
+		System.out.println(sistema.registrarTramo(1, 1, 2, 2, 10, 10));
+		
+		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 0, 10));
+		
+		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 10, 0));
+		
+		System.out.println(sistema.registrarTramo(4, 1, 1, 2, 10, 10));
+		System.out.println(sistema.registrarTramo(1, 4, 1, 2, 10, 10));
+		
+		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
 	}
 	
 }

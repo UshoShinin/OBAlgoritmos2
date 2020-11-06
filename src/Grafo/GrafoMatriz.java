@@ -7,6 +7,7 @@ public class GrafoMatriz {
 	Arco[][] MatrizCostos;
 	Direccion [] Nodos;
 	
+	
 	public GrafoMatriz(int cantDir) {
 		this.size=0;
 		this.cantDir=cantDir;
@@ -78,6 +79,28 @@ public class GrafoMatriz {
 	
 	public void agregarArista(int origen, int destino, int kilometros, int tiempo) {
 		this.MatrizCostos[origen][destino] = new Arco(kilometros,tiempo);
+	}
+	
+	public Retorno altaTramo(double codXi, double codYi, double codXf, double codYf, int metros, int minutos) {
+		Retorno ret = new Retorno(Retorno.Resultado.OK);
+		if(metros <= 0) {
+			ret.resultado = Retorno.Resultado.ERROR_1;
+			return ret;
+		}
+		if(minutos <= 0) {
+			ret.resultado = Retorno.Resultado.ERROR_2;
+			return ret;
+		}
+		int dirI = buscarDireccion(codXi, codYi);
+		int dirF = buscarDireccion(codXf, codYf);
+		if(dirI < 0 || dirF < 0) {
+			ret.resultado = Retorno.Resultado.ERROR_3;
+		}else if(MatrizCostos[dirI][dirF].existe) {
+			ret.resultado = Retorno.Resultado.ERROR_4;
+		}else {
+			MatrizCostos[dirI][dirF].existir(metros, minutos);
+		}
+		return ret;	
 	}
 	
 	public void mostrar() {
