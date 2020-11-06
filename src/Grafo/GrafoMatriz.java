@@ -114,6 +114,8 @@ public class GrafoMatriz {
 		}
 	}
 	
+	/*
+	
 	public int costoCaminoMinimo(double coordXi, double coordYi, double coordXf, double coordYf) {
 		int origen = buscarDireccion(coordXi,coordYi);
 		int destino = buscarDireccion(coordXf,coordYf);
@@ -174,7 +176,9 @@ public class GrafoMatriz {
 		}
 		return posMasBarata;
 	}
-	/*
+	
+	*/
+	
 	//devuelve la posicion en el array de direcciones de la direccion con un movil mas cercana a la direccion de inicio
 	public int costoCaminoMinimo(double codXi, double codYi, double codXf, double codYf) {
 		int[] metros = new int[cantDir];
@@ -209,17 +213,17 @@ public class GrafoMatriz {
 		//visite todas las direcciones
 		return metros[posDireccionDestino];
 	}
-	*/
 	
 	
-	/*
+	
+	
 	public boolean direccionesSinVisitar(Direccion[] visitados) {
 		for (int i = 0; i < visitados.length; i++) {
 			if(visitados[i] == null) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	
@@ -229,10 +233,11 @@ public class GrafoMatriz {
 		for (int i = 0; i < visitados.length; i++) {
 			if(visitados[i] == null && costos[i] <= costoMinimo) {
 				posMasBarata = i;
+				costoMinimo = costos[i];
 			}
 		}
 		return posMasBarata;
 	}
-	*/
+	
 }
 
