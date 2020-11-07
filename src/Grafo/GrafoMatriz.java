@@ -110,24 +110,33 @@ public class GrafoMatriz {
 		for(int i = 0 ; i<cantDir;i++) {
 			for(int j= 0 ; j<cantDir;j++) {
 				if(MatrizCostos[i][j].existe) {
-					System.out.println(MatrizCostos[i][j]); 
+					System.out.print(MatrizCostos[i][j] +"-"); 
+				}else {
+					System.out.print("0-");
 				}
+				
 			}
+			System.out.println("-");
 		}
 	}
 	
-	
+	public void mostrar2() {
+		for(int i = 0;i<16;i++) {
+			if(i%4==0) {System.out.println("");}
+			System.out.print(i+":"+Nodos[i]+"  -  ");
+		}
+	}
 	
 	//devuelve la posicion en el array de direcciones de la direccion con un movil mas cercana a la direccion de inicio
 	public int costoCaminoMinimoMovil(double codXi, double codYi, double codXf, double codYf) {
 		int[] metros = new int[cantDir];
-		Direccion[] visitados = new Direccion[cantDir];
+		boolean[] visitados = new boolean[cantDir];
 		int posDireccionInicial = buscarDireccion(codXi, codYi);
 		int posDireccionDestino = buscarDireccion(codXf, codYf);
 		int anterior = posDireccionInicial;
 		int[] anteriores = new int[cantDir];
 		//Arranque
-		visitados[posDireccionInicial] = Nodos[posDireccionInicial];
+		visitados[posDireccionInicial] = true;
 		for (int i = 0; i < cantDir; i++) {
 			if(MatrizCostos[posDireccionInicial][i].existe) {
 				metros[i] = MatrizCostos[posDireccionInicial][i].metros;
@@ -135,33 +144,50 @@ public class GrafoMatriz {
 				metros[i] = Integer.MAX_VALUE;
 			}
 		}
+		for (int i : metros) {
+            if (i == Integer.MAX_VALUE) i = -1;
+        }
+		int w = direccionMasBarataSinVisitar(visitados, metros);
+		anteriores[w]=posDireccionInicial;
 		//Visitamos todos
 		while(direccionesSinVisitar(visitados)) {
-			int w = direccionMasBarataSinVisitar(visitados, metros);
+			w = direccionMasBarataSinVisitar(visitados, metros);
 			if(w == -1) {
 				return -1;
 			}
-			anteriores[w] = anterior;
-			visitados[w] = Nodos[w];
+			visitados[w] = true;
 			//aca hay que ver de si al visitar W tengo que agregar el que estaba antes al array de anteriores para saber a cuantos fui
 			for (int i = 0; i < cantDir; i++) {
-				if(MatrizCostos[w][i].existe && visitados[i] == null) {
-					System.out.println(w + "/" + i + "/" + metros[w] + MatrizCostos[w][i].metros);
+				if(MatrizCostos[w][i].existe && !visitados[i]) {
+					//System.out.println(w + "voy a" + i + " costo en matriz:" + MatrizCostos[w][i].metros);
 					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);
+					anteriores[i]=w;
 				}
 			}
-			anterior = w;
+			
 		}
+		
 		//visite todas las direcciones
+
+		
+		String Ruta="";
+		int punto = posDireccionDestino;
+		while(punto!=posDireccionInicial) {
+			Ruta=Nodos[punto]+"  -  "+Ruta;
+			punto = anteriores[punto];
+		}
+		
+		Ruta=Nodos[punto]+"  -  "+Ruta;
+		System.out.println(Ruta);
 		return metros[posDireccionDestino];
 	}
 	
 	
 	
 	
-	public boolean direccionesSinVisitar(Direccion[] visitados) {
+	public boolean direccionesSinVisitar(boolean[] visitados) {
 		for (int i = 0; i < visitados.length; i++) {
-			if(visitados[i] == null) {
+			if(!visitados[i]) {
 				return true;
 			}
 		}
@@ -169,11 +195,11 @@ public class GrafoMatriz {
 	}
 	
 	
-	public static int direccionMasBarataSinVisitar(Direccion[] visitados, int[]  costos) {
+	public static int direccionMasBarataSinVisitar(boolean[] visitados, int[]  costos) {
 		int costoMinimo = Integer.MAX_VALUE;
 		int posMasBarata = -1;
 		for (int i = 0; i < visitados.length; i++) {
-			if(visitados[i] == null && costos[i] <= costoMinimo) {
+			if(!visitados[i] && costos[i] <= costoMinimo) {
 				posMasBarata = i;
 				costoMinimo = costos[i];
 			}

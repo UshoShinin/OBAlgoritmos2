@@ -16,8 +16,14 @@ public abstract class Direccion {
 
 
 	@Override
-	public String toString() {
+	/*public String toString() {
+		public String toString() {
 		return "Yo soy la direccion: " + codX + " " + codY;
+	}return "Yo soy la direccion: " + codX + " " + codY;
+	}
+	*/
+	public String toString() {
+		return "X:" + codX + " Y:" + codY;
 	}
 	
 	

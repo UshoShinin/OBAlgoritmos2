@@ -7,7 +7,7 @@ public class Sistema implements ISistema {
 	
 	private static Sistema sistema;
 	private ABBUsuario Usuarios;
-	private GrafoMatriz Grafo;
+	public GrafoMatriz Grafo;
 	
 	public static Sistema getSistema() {
 		if(sistema == null) {

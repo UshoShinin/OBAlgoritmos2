@@ -1,5 +1,5 @@
 package uy.edu.ort.obli;
-
+import Grafo.*;
 
 public class ParaProbar {
 	
@@ -9,6 +9,7 @@ public class ParaProbar {
 		
 		
 		sistema.inicializarSistema(16);
+		/*
 		sistema.registrarUsuario("pepe@gmail.com","Pepe","PepeCapo1");
 		sistema.registrarUsuario("pepa@gmail.com","Pepa","PepeCapo1");
 		sistema.registrarUsuario("ana12@gmail.com","Ana","Anita");
@@ -21,7 +22,10 @@ public class ParaProbar {
 		System.out.println(sistema.buscarUsuario("ana12@gmail.com"));
 		System.out.println("\n");
 		
+		*/
+		
 		//Direcciones
+		/*
 		System.out.println(sistema.registrarEsquina(1, 1));
 		System.out.println(sistema.registrarEsquina(1, 2));
 		System.out.println(sistema.registrarEsquina(1, 3));
@@ -33,10 +37,11 @@ public class ParaProbar {
 		System.out.println(sistema.registrarMovil("AB123",3, 1));
 		System.out.println(sistema.registrarMovil("AB123",3, 2));
 		System.out.println(sistema.registrarMovil("AB123",3, 3));
-		
-		
-		
 		System.out.println("-----------");
+		*/
+		
+		
+		
 		/*
 		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 1));
 		System.out.println(sistema.registrarTramo(1, 1, 2, 1, 3, 1));
@@ -96,6 +101,9 @@ public class ParaProbar {
 		sistema.registrarTramo(4, 1, 4, 2, 2, 10);// 12 - 13
 		sistema.registrarTramo(4, 2, 4, 3, 3, 10);// 13 - 14
 		sistema.registrarTramo(4, 3, 4, 4, 2, 10);// 14 - 15
+		
+		//sistema.Grafo.mostrar2();
+		
 		
 		sistema.caminoMinimoMovil(4, 1, 3, 1);
 		
