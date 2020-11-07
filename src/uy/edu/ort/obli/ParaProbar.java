@@ -8,7 +8,7 @@ public class ParaProbar {
 		Sistema sistema = Sistema.getSistema();
 		
 		
-		sistema.inicializarSistema(9);
+		sistema.inicializarSistema(16);
 		sistema.registrarUsuario("pepe@gmail.com","Pepe","PepeCapo1");
 		sistema.registrarUsuario("pepa@gmail.com","Pepa","PepeCapo1");
 		sistema.registrarUsuario("ana12@gmail.com","Ana","Anita");
@@ -37,7 +37,7 @@ public class ParaProbar {
 		
 		
 		System.out.println("-----------");
-		
+		/*
 		System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 1));
 		System.out.println(sistema.registrarTramo(1, 1, 2, 1, 3, 1));
 		System.out.println(sistema.registrarTramo(1, 2, 1, 3, 1, 1));
@@ -52,8 +52,8 @@ public class ParaProbar {
 		System.out.println(sistema.registrarTramo(3, 2, 3, 3, 3, 1));
 		
 		sistema.caminoMinimoMovil(1, 1, 3, 2);
+		*/
 		
-		/*
 		sistema.registrarEsquina(1, 1);
 		sistema.registrarEsquina(1, 2);
 		sistema.registrarEsquina(1, 3);
@@ -74,28 +74,28 @@ public class ParaProbar {
 		sistema.registrarEsquina(4, 3);
 		sistema.registrarEsquina(4, 4);
 		
-		sistema.registrarTramo(1, 1, 1, 2, 1, 0);
-		sistema.registrarTramo(1, 2, 1, 3, 10, 0);
-		sistema.registrarTramo(1, 3, 1, 4, 1, 0);
+		sistema.registrarTramo(1, 1, 1, 2, 1, 1); // 0 - 1
+		sistema.registrarTramo(1, 2, 1, 3, 10, 10);// 1 - 2
+		sistema.registrarTramo(1, 3, 1, 4, 1, 10);// 2 - 3
 		
-		sistema.registrarTramo(1, 2, 2, 2, 2, 0);
-		sistema.registrarTramo(1, 4, 2, 4, 1, 0);
+		sistema.registrarTramo(1, 2, 2, 2, 2, 10);// 1 - 5
+		sistema.registrarTramo(1, 4, 2, 4, 1, 10);// 3 - 7
 		
-		sistema.registrarTramo(2, 1, 2, 2, 2, 0);
-		sistema.registrarTramo(2, 2, 2, 3, 1, 0);
+		sistema.registrarTramo(2, 1, 2, 2, 2, 10);// 4 - 5
+		sistema.registrarTramo(2, 2, 2, 3, 1, 10);// 5 - 6
 		
-		sistema.registrarTramo(2, 1, 3, 1, 3, 0);
-		sistema.registrarTramo(2, 3, 3, 3, 4, 0);
-		sistema.registrarTramo(2, 4, 3, 4, 1, 0);
+		sistema.registrarTramo(2, 1, 3, 1, 3, 10);// 4 - 8
+		sistema.registrarTramo(2, 3, 3, 3, 4, 10);// 6 - 10
+		sistema.registrarTramo(2, 4, 3, 4, 1, 10);// 7 - 11
 		
-		sistema.registrarTramo(3, 1, 3, 2, 1, 0);
+		sistema.registrarTramo(3, 1, 3, 2, 1, 10);// 8 - 9
 
-		sistema.registrarTramo(3, 2, 4, 2, 60, 0);
-		sistema.registrarTramo(3, 3, 4, 3, 2, 0);
+		sistema.registrarTramo(3, 2, 4, 2, 60, 10);// 9 - 13
+		sistema.registrarTramo(3, 3, 4, 3, 2, 10);// 10 - 14
 		
-		sistema.registrarTramo(4, 1, 4, 2, 2, 0);
-		sistema.registrarTramo(4, 2, 4, 3, 3, 0);
-		sistema.registrarTramo(4, 3, 4, 4, 2, 0);
+		sistema.registrarTramo(4, 1, 4, 2, 2, 10);// 12 - 13
+		sistema.registrarTramo(4, 2, 4, 3, 3, 10);// 13 - 14
+		sistema.registrarTramo(4, 3, 4, 4, 2, 10);// 14 - 15
 		
 		sistema.caminoMinimoMovil(4, 1, 3, 1);
 		
@@ -109,7 +109,7 @@ public class ParaProbar {
 		//System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
 		
 		System.out.println("-----------");
-		*/
+		
 		
 	}
 	
