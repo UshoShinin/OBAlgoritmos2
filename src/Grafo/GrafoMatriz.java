@@ -106,30 +106,59 @@ public class GrafoMatriz {
 		return ret;	
 	}
 	
-	public void mostrar() {
-		for(int i = 0 ; i<cantDir;i++) {
-			for(int j= 0 ; j<cantDir;j++) {
-				if(MatrizCostos[i][j].existe) {
-					System.out.print(MatrizCostos[i][j] +"-"); 
-				}else {
-					System.out.print("0-");
-				}
-				
+	public Retorno movilMasCercano(double codXi, double codYi) {
+		Retorno ret = new Retorno(Retorno.Resultado.OK);
+		movilesDisponibles();
+		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
+		int[] metros = new int[cantDir];
+		boolean[] visitados = new boolean[cantDir];
+		int posDireccionInicial = buscarDireccion(codXi, codYi);
+		//Verifico que las direcciones existan
+		if(posDireccionInicial == -1) return new Retorno(Retorno.Resultado.ERROR_1);
+		
+		if(!movilesDisponibles()) return new Retorno(Retorno.Resultado.ERROR_2);
+		
+		//Arranque
+		visitados[posDireccionInicial] = true;
+		for (int i = 0; i < cantDir; i++) {
+			if(MatrizCostos[posDireccionInicial][i].existe) {
+				metros[i] = MatrizCostos[posDireccionInicial][i].metros;
+			}else {
+				metros[i] = Integer.MAX_VALUE;
 			}
-			System.out.println("-");
 		}
-	}
-	
-	public void mostrar2() {
-		for(int i = 0;i<16;i++) {
-			if(i%4==0) {System.out.println("");}
-			System.out.print(i+":"+Nodos[i]+"  -  ");
+		int w = direccionMasBarataSinVisitar(visitados, metros);
+		
+		//Visitamos todos
+		while(direccionesSinVisitar(visitados)) {
+			w = direccionMasBarataSinVisitar(visitados, metros);
+			if(w == -1) {
+				return new Retorno(Retorno.Resultado.ERROR_3,-1,"");
+			}
+			if(Nodos[w].getClass().getName()=="Grafo.Movil"){
+				Movil M = (Movil)Nodos[w];
+				if(!M.ocupado) {
+					M.ocupado=true;
+					return new Retorno(Retorno.Resultado.OK,metros[w],"");
+				}
+			}
+			visitados[w] = true;
+			for (int i = 0; i < cantDir; i++) {
+				if(MatrizCostos[w][i].existe && !visitados[i]) {
+					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);
+					
+				}
+			}	
 		}
+
+		//guardo la direccion para el usuario
+		return ret;
 	}
 	
 	//devuelve la posicion en el array de direcciones de la direccion con un movil mas cercana a la direccion de inicio
 	public Retorno costoCaminoMinimoMovil(double codXi, double codYi, double codXf, double codYf, String email) {
 		Retorno ret = new Retorno(Retorno.Resultado.OK);
+		movilesDisponibles();
 		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
 		int[] metros = new int[cantDir];
 		boolean[] visitados = new boolean[cantDir];
@@ -140,7 +169,7 @@ public class GrafoMatriz {
 			ret.resultado = Retorno.Resultado.ERROR_1;
 			return ret;
 		}
-		int anterior = posDireccionInicial;
+		
 		int[] anteriores = new int[cantDir];
 		//Arranque
 		visitados[posDireccionInicial] = true;
@@ -151,21 +180,17 @@ public class GrafoMatriz {
 				metros[i] = Integer.MAX_VALUE;
 			}
 		}
-		for (int i : metros) {
-            if (i == Integer.MAX_VALUE) i = -1;
-        }
 		int w = direccionMasBarataSinVisitar(visitados, metros);
 		anteriores[w]=posDireccionInicial;
 		//Visitamos todos
 		while(direccionesSinVisitar(visitados)) {
 			w = direccionMasBarataSinVisitar(visitados, metros);
-			//if(w == -1) {
-			//	return -1;
-			//}
+			if(w == -1) {
+				return new Retorno(Retorno.Resultado.ERROR_3,-1,"");
+			}
 			visitados[w] = true;
 			for (int i = 0; i < cantDir; i++) {
 				if(MatrizCostos[w][i].existe && !visitados[i]) {
-					//System.out.println(w + "voy a" + i + " costo en matriz:" + MatrizCostos[w][i].metros);
 					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);
 					anteriores[i]=w;
 				}
@@ -185,13 +210,20 @@ public class GrafoMatriz {
 		return ret;
 	}
 	
-	
-	
-	
 	public boolean direccionesSinVisitar(boolean[] visitados) {
 		for (int i = 0; i < visitados.length; i++) {
 			if(!visitados[i]) {
 				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean movilesDisponibles() {
+		for (Direccion D : Nodos) {
+			if(D.getClass().getName()=="Grafo.Movil") {
+				Movil M = (Movil)D;
+				if(!M.ocupado) return true;
 			}
 		}
 		return false;
