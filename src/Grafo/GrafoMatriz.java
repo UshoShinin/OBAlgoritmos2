@@ -78,10 +78,6 @@ public class GrafoMatriz {
 		return ret;
 	}
 	
-	public void agregarArista(int origen, int destino, int kilometros, int tiempo) {
-		this.MatrizCostos[origen][destino] = new Arco(kilometros,tiempo);
-	}
-	
 	public Retorno altaTramo(double codXi, double codYi, double codXf, double codYf, int metros, int minutos) {
 		Retorno ret = new Retorno(Retorno.Resultado.OK);
 		if(metros <= 0) {
@@ -100,8 +96,6 @@ public class GrafoMatriz {
 			ret.resultado = Retorno.Resultado.ERROR_4;
 		}else {
 			MatrizCostos[dirI][dirF].existir(metros, minutos);
-			//ESTO ES UNA CHANCHADA HAY QUE ARREGLARLO DESPUES PARA QUE QUEDE MEJOR
-			MatrizCostos[dirF][dirI].existir(metros, minutos);
 		}
 		return ret;	
 	}

@@ -5,17 +5,10 @@ import componentes.*;
 import Grafo.*;
 public class Sistema implements ISistema {
 	
-	private static Sistema sistema;
 	private ABBUsuario Usuarios;
 	public GrafoMatriz Grafo;
 	
 	//esto hay que ver si puede ir o no
-	public static Sistema getSistema() {
-		if(sistema == null) {
-			sistema = new Sistema();
-		}
-		return sistema;
-	}
 	public Sistema(){
 	};
 	
