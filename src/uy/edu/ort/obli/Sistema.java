@@ -84,7 +84,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno movilMasCercano(double coordXi, double coordYi) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		return Grafo.movilMasCercano(coordXi, coordYi);
 	}
 
 	@Override
