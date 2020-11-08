@@ -19,37 +19,54 @@ public class ListaDireccion {
 	}
 
 	public String listadoDir() {
+		return listadoDir(inicio);
+	}
+	
+	private String listadoDir(NodoListaDireccion nd) {
 		String ret = "";
-		NodoListaDireccion aux = inicio;
-		while(aux != null) {
-		ret += aux.dir.getCodX() + ";" + aux.dir.getCodY() + "|";
-		aux = aux.getSig();
+		if(nd == null) {
+			return ret;
 		}
-		return ret;
+		ret += listadoDir(nd.getSig());
+		return nd.dir.getCodX() + ";" + nd.dir.getCodY() + "|";
+	}
+	
+	private void insertarPrincipio(Direccion d) {
+		NodoListaDireccion aux = new NodoListaDireccion(d);
+		aux.setSig(inicio);
+		inicio = aux;
 	}
 	
 	public void insertar(Direccion d) {
 		NodoListaDireccion aux = inicio;
 		if(aux == null) {
 			inicio = new NodoListaDireccion(d);
-		}
-		while(aux.getSig() != null) {
+		}else {
+			while(aux.getSig() != null) {
+				if(aux.getDir().equals(d)) {
+					aux.cantVeces++;
+					ordernar(aux);
+					break;
+				}
+				aux.getSig();
+			}
 			if(aux.getDir().equals(d)) {
 				aux.cantVeces++;
-				break;
+				ordernar(aux);
+			}else {
+				insertarPrincipio(d);
 			}
-			aux.getSig();
 		}
-		if(aux.getDir().equals(d)) {
-			aux.cantVeces++;
-		}
-		aux.setSig(new NodoListaDireccion(d));
-		ordernarListado();
 	}
 	
-	private void ordernarListado() {
-		NodoListaDireccion aux = inicio;
-		
+	private void ordernar(NodoListaDireccion nd) {
+		NodoListaDireccion yo = nd;
+		NodoListaDireccion aux = nd;
+		while(aux.getSig() != null && aux.cantVeces > aux.getSig().cantVeces) {
+			aux = aux.getSig();
+		}
+		yo.setSig(aux.getSig());
+		aux.setSig(yo);
 	}
 	
 }

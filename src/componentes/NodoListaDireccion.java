@@ -27,6 +27,7 @@ public class NodoListaDireccion {
 		this.sig = sig;
 	}
 	
+	
 	public NodoListaDireccion(Direccion d) {
 		this.dir = d;
 		this.cantVeces = 1;
