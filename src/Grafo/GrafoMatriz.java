@@ -1,4 +1,6 @@
 package Grafo;
+import componentes.ABBUsuario;
+import componentes.Usuario;
 import uy.edu.ort.obli.Retorno;
 
 public class GrafoMatriz {
@@ -8,6 +10,7 @@ public class GrafoMatriz {
 	Arco[][] MatrizCostos;
 	Direccion [] Nodos;
 	
+	private ABBUsuario usuarios = new ABBUsuario();
 	
 	public GrafoMatriz(int cantDir) {
 		this.size=0;
@@ -200,6 +203,8 @@ public class GrafoMatriz {
 		ret.valorEntero = metros[posDireccionDestino];
 		ret.valorString = Ruta;
 		//guardo la direccion para el usuario
+		Usuario user = usuarios.buscarUsuarioSimple(email);
+		user.agregarDireccion(Nodos[posDireccionDestino]);
 		return ret;
 	}
 	
@@ -227,7 +232,7 @@ public class GrafoMatriz {
 		int costoMinimo = Integer.MAX_VALUE;
 		int posMasBarata = -1;
 		for (int i = 0; i < visitados.length; i++) {
-			if(!visitados[i] && costos[i] <= costoMinimo) {
+			if(!visitados[i] && costos[i] < costoMinimo) {
 				posMasBarata = i;
 				costoMinimo = costos[i];
 			}

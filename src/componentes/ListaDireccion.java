@@ -27,6 +27,7 @@ public class ListaDireccion {
 		if(nd == null) {
 			return ret;
 		}
+		System.out.println(ret);
 		ret += listadoDir(nd.getSig());
 		return nd.dir.getCodX() + ";" + nd.dir.getCodY() + "|";
 	}
