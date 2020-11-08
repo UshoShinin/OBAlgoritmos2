@@ -53,7 +53,6 @@ public class ABBUsuario {
 			return null;
 		}
 		//Creo un usuario auxiliar para facilitar las comparaciones
-		
 		Usuario aux = new Usuario(email);
 		return buscarUsuario(aux, this.raiz,1);
 	}
@@ -85,6 +84,48 @@ public class ABBUsuario {
 		}
 		return nombre;
 	}
+
+	public Retorno direccionesDeUsuario(String email) {
+		Retorno ret = new Retorno(Retorno.Resultado.OK);
+		if(!Usuario.validarMail(email)) {
+			ret.resultado = Retorno.Resultado.ERROR_1;
+			return ret;
+		}
+		Usuario u = buscarUsuarioSimple(email);
+		if(u == null) {
+			ret.resultado = Retorno.Resultado.ERROR_2;
+			return ret;
+		}
+		String strRet = u.listadoDir();
+		if(strRet == "") {
+			strRet = "El usuario no tiene ninguna direccion guardada";
+		}
+		ret.valorString = strRet;
+		return ret;
+	}
 	
-	//hola hola
+	//Estos 2 metodos los cree para tener un metodo que nos devuelva un usuario y listo
+	//El otro metodo que hay de buscar se usa para devolver algunas otras cosas que pide la letra
+	private Usuario buscarUsuarioSimple(String email) {
+		if(this.raiz == null) {
+			return null;
+		}
+		Usuario aux = new Usuario(email);
+		return buscarUsuarioSimple(aux, this.raiz);
+	}
+	
+	private Usuario buscarUsuarioSimple(Usuario u, NodoUsuario nu) {
+		if(nu == null) {
+			return null;
+		}
+		if(nu.getUsu().equals(u)) {
+			return nu.getUsu();
+		}
+		if(u.compareTo(nu.getUsu()) > 0) {
+			return buscarUsuarioSimple(u, nu.getDrc());
+		}else {
+			return buscarUsuarioSimple(u, nu.getIzq());
+		}
+	}
+	
 }

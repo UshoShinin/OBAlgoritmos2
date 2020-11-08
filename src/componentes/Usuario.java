@@ -11,7 +11,7 @@ public class Usuario implements Comparable<Usuario>{
 	private String email;
 	private String nombre;
 	private String password;
-	
+	private ListaDireccion direcciones;
 	
 	
 	public String getEmail() {
@@ -32,7 +32,9 @@ public class Usuario implements Comparable<Usuario>{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public ListaDireccion getListaDireccion() {
+		return direcciones;
+	}
 	
 	public Usuario(String email) {
 		this.email = email;
@@ -41,6 +43,7 @@ public class Usuario implements Comparable<Usuario>{
 		this.nombre = nombre;
 		this.email = email;
 		this.password = password;
+		this.direcciones = new ListaDireccion();
 	}
 	
 	@Override
@@ -70,6 +73,12 @@ public class Usuario implements Comparable<Usuario>{
 	public String toString() {
 		return email + ";" + nombre;
 	}
+	
+	
+	public String listadoDir() {
+		return direcciones.listadoDir();
+	}
+	
 	
 	
 	//Para poder validar el mail utilizando expresiones regulares

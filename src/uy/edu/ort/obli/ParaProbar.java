@@ -105,7 +105,7 @@ public class ParaProbar {
 		//sistema.Grafo.mostrar2();
 		
 		
-		sistema.caminoMinimoMovil(4, 1, 3, 1);
+		//sistema.caminoMinimoMovil(4, 1, 3, 1);
 		
 		//System.out.println(sistema.registrarTramo(1, 1, 1, 2, 0, 10));
 		
@@ -117,7 +117,8 @@ public class ParaProbar {
 		//System.out.println(sistema.registrarTramo(1, 1, 1, 2, 1, 10));
 		
 		System.out.println("-----------");
-		
+		sistema.registrarUsuario("pepe@gmail.com","Pepe","PepeCapo1");
+		System.out.println(sistema.direccionesDeUsuario("pepe@gmail.com"));
 		
 	}
 	

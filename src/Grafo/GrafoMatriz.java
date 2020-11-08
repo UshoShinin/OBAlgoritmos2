@@ -128,11 +128,18 @@ public class GrafoMatriz {
 	}
 	
 	//devuelve la posicion en el array de direcciones de la direccion con un movil mas cercana a la direccion de inicio
-	public int costoCaminoMinimoMovil(double codXi, double codYi, double codXf, double codYf) {
+	public Retorno costoCaminoMinimoMovil(double codXi, double codYi, double codXf, double codYf, String email) {
+		Retorno ret = new Retorno(Retorno.Resultado.OK);
+		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
 		int[] metros = new int[cantDir];
 		boolean[] visitados = new boolean[cantDir];
 		int posDireccionInicial = buscarDireccion(codXi, codYi);
 		int posDireccionDestino = buscarDireccion(codXf, codYf);
+		//Verifico que las direcciones existan
+		if(posDireccionInicial == -1 || posDireccionDestino == -1) {
+			ret.resultado = Retorno.Resultado.ERROR_1;
+			return ret;
+		}
 		int anterior = posDireccionInicial;
 		int[] anteriores = new int[cantDir];
 		//Arranque
@@ -152,34 +159,30 @@ public class GrafoMatriz {
 		//Visitamos todos
 		while(direccionesSinVisitar(visitados)) {
 			w = direccionMasBarataSinVisitar(visitados, metros);
-			if(w == -1) {
-				return -1;
-			}
+			//if(w == -1) {
+			//	return -1;
+			//}
 			visitados[w] = true;
-			//aca hay que ver de si al visitar W tengo que agregar el que estaba antes al array de anteriores para saber a cuantos fui
 			for (int i = 0; i < cantDir; i++) {
 				if(MatrizCostos[w][i].existe && !visitados[i]) {
 					//System.out.println(w + "voy a" + i + " costo en matriz:" + MatrizCostos[w][i].metros);
 					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);
 					anteriores[i]=w;
 				}
-			}
-			
+			}	
 		}
-		
 		//visite todas las direcciones
-
-		
 		String Ruta="";
 		int punto = posDireccionDestino;
 		while(punto!=posDireccionInicial) {
-			Ruta=Nodos[punto]+"  -  "+Ruta;
+			Ruta = Nodos[punto].codX + ";" + Nodos[punto].codY + "|" + Ruta;
 			punto = anteriores[punto];
 		}
-		
-		Ruta=Nodos[punto]+"  -  "+Ruta;
-		System.out.println(Ruta);
-		return metros[posDireccionDestino];
+		Ruta = Nodos[punto].codX + ";" + Nodos[punto].codY + "|" + Ruta;
+		ret.valorEntero = metros[posDireccionDestino];
+		ret.valorString = Ruta;
+		//guardo la direccion para el usuario
+		return ret;
 	}
 	
 	

@@ -9,6 +9,7 @@ public class Sistema implements ISistema {
 	private ABBUsuario Usuarios;
 	public GrafoMatriz Grafo;
 	
+	//esto hay que ver si puede ir o no
 	public static Sistema getSistema() {
 		if(sistema == null) {
 			sistema = new Sistema();
@@ -58,7 +59,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno direccionesDeUsuario(String email) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		return Usuarios.direccionesDeUsuario(email);
 	}
 
 	@Override
@@ -92,9 +93,9 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno caminoMinimoMovil(double coordXi, double coordYi, double coordXf, double coordYf) {
+	public Retorno caminoMinimoMovil(double coordXi, double coordYi, double coordXf, double coordYf, String email) {
 		//esto simplemente es para probar, asi que veamos que pasa. Obviamente vamos a cambiarlo con ivan el ssabado
-		System.out.println(Grafo.costoCaminoMinimoMovil(coordXi, coordYi, coordXf, coordYf)); 
+		System.out.println(Grafo.costoCaminoMinimoMovil(coordXi, coordYi, coordXf, coordYf, email)); 
 		return new Retorno(Resultado.NO_IMPLEMENTADA);
 	}
 
