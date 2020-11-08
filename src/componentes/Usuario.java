@@ -3,6 +3,8 @@ package componentes;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Grafo.Direccion;
+
 public class Usuario implements Comparable<Usuario>{
 	
 	
@@ -80,6 +82,9 @@ public class Usuario implements Comparable<Usuario>{
 	}
 	
 	
+	public void agregarDireccion(Direccion d) {
+		direcciones.insertar(d);
+	}
 	
 	//Para poder validar el mail utilizando expresiones regulares
 	private static String regex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
