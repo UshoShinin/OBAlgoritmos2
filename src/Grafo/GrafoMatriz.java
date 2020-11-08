@@ -125,7 +125,6 @@ public class GrafoMatriz {
 			}
 		}
 		int w = direccionMasBarataSinVisitar(visitados, metros);
-		
 		//Visitamos todos
 		while(direccionesSinVisitar(visitados)) {
 			w = direccionMasBarataSinVisitar(visitados, metros);
@@ -142,8 +141,7 @@ public class GrafoMatriz {
 			visitados[w] = true;
 			for (int i = 0; i < cantDir; i++) {
 				if(MatrizCostos[w][i].existe && !visitados[i]) {
-					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);
-					
+					metros[i] = Math.min(metros[i], metros[w] + MatrizCostos[w][i].metros);			
 				}
 			}	
 		}
