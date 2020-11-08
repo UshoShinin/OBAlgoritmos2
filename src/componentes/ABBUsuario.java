@@ -106,7 +106,7 @@ public class ABBUsuario {
 	
 	//Estos 2 metodos los cree para tener un metodo que nos devuelva un usuario y listo
 	//El otro metodo que hay de buscar se usa para devolver algunas otras cosas que pide la letra
-	private Usuario buscarUsuarioSimple(String email) {
+	public Usuario buscarUsuarioSimple(String email) {
 		if(this.raiz == null) {
 			return null;
 		}

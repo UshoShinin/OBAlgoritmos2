@@ -169,7 +169,6 @@ public class GrafoMatriz {
 			ret.resultado = Retorno.Resultado.ERROR_1;
 			return ret;
 		}
-		
 		int[] anteriores = new int[cantDir];
 		//Arranque
 		visitados[posDireccionInicial] = true;

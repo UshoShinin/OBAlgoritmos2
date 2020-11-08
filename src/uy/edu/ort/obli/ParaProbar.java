@@ -1,11 +1,13 @@
 package uy.edu.ort.obli;
 
+import componentes.ABBUsuario;
+import componentes.Usuario;
 
 public class ParaProbar {
 	
 	public static void main(String[] args) {
 		
-		Sistema sistema = Sistema.getSistema();
+		Sistema sistema = new Sistema();
 		
 		
 		sistema.inicializarSistema(16);
@@ -116,10 +118,14 @@ public class ParaProbar {
 		
 		System.out.println("-----------");
 		sistema.registrarUsuario("pepe@gmail.com","Pepe","PepeCapo1");
+		/*
 		System.out.println(sistema.direccionesDeUsuario("pepe@gmail.com"));
 		System.out.println(sistema.movilMasCercano(4, 1));
 		System.out.println(sistema.movilMasCercano(4, 1));
 		System.out.println(sistema.movilMasCercano(4, 1));
+		*/
+		
+		System.out.println(sistema.direccionesDeUsuario("pepe@gmail.com"));
 		
 	}
 	
