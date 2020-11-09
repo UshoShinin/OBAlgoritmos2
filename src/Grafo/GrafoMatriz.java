@@ -1,6 +1,7 @@
 package Grafo;
-import componentes.ABBUsuario;
 import componentes.Usuario;
+import java.util.LinkedList;
+import java.util.Queue;
 import uy.edu.ort.obli.Retorno;
 
 public class GrafoMatriz {
@@ -9,8 +10,6 @@ public class GrafoMatriz {
 	int cantDir;
 	Arco[][] MatrizCostos;
 	Direccion [] Nodos;
-	
-	private ABBUsuario usuarios = new ABBUsuario();
 	
 	public GrafoMatriz(int cantDir) {
 		this.size=0;
@@ -150,8 +149,42 @@ public class GrafoMatriz {
 		return ret;
 	}
 	
+	
+	public Retorno deliveryMasCercano(double coordXi,double coordYi) {
+		int inicio = buscarDireccion(coordXi,coordYi);
+		if(inicio == -1) {
+			return new Retorno(Retorno.Resultado.ERROR_1);
+		}
+		if(!deliveryesDisponibles()) {
+			return new Retorno(Retorno.Resultado.ERROR_2);
+		}
+		Cola c = new Cola();
+		boolean []visitados = new boolean[cantDir];
+		visitados[inicio] = true;
+		c.add(inicio,0);
+		
+		while(!c.isEmpty()) {
+			NodoCola P= c.peek();
+			for(int i= 0; i<cantDir;i++) {
+				if((MatrizCostos[P.indice][i].existe||MatrizCostos[i][P.indice].existe)&&!visitados[i]) {
+					visitados[i]=true;
+					c.add(i,P.peso+1);					
+					if(Nodos[i].getClass().getName()=="Grafo.Delivery") {
+						Delivery Del = (Delivery)Nodos[i];
+						if(!Del.ocupado) {
+							Del.ocupado =true;
+							return new Retorno(Retorno.Resultado.OK,P.peso+1, Nodos[i].toString());
+						};
+					}
+				}
+			}
+			
+		}
+		
+		return new Retorno(Retorno.Resultado.NO_IMPLEMENTADA);
+	}
 	//devuelve la posicion en el array de direcciones de la direccion con un movil mas cercana a la direccion de inicio
-	public Retorno costoCaminoMinimoMovil(double codXi, double codYi, double codXf, double codYf, String email) {
+	public Retorno costoCaminoMinimoMovil(double codXi, double codYi, double codXf, double codYf, Usuario U) {
 		Retorno ret = new Retorno(Retorno.Resultado.OK);
 		movilesDisponibles();
 		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
@@ -201,8 +234,7 @@ public class GrafoMatriz {
 		ret.valorEntero = metros[posDireccionDestino];
 		ret.valorString = Ruta;
 		//guardo la direccion para el usuario
-		Usuario user = usuarios.buscarUsuarioSimple(email);
-		user.agregarDireccion(Nodos[posDireccionDestino]);
+		U.agregarDireccion(Nodos[posDireccionDestino]);
 		return ret;
 	}
 	
@@ -210,6 +242,16 @@ public class GrafoMatriz {
 		for (int i = 0; i < visitados.length; i++) {
 			if(!visitados[i]) {
 				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean deliveryesDisponibles() {
+		for (Direccion D : Nodos) {
+			if(D.getClass().getName()=="Grafo.Delivery") {
+				Delivery Del = (Delivery)D;
+				if(!Del.ocupado) return true;
 			}
 		}
 		return false;
@@ -224,7 +266,6 @@ public class GrafoMatriz {
 		}
 		return false;
 	}
-	
 	
 	public static int direccionMasBarataSinVisitar(boolean[] visitados, int[]  costos) {
 		int costoMinimo = Integer.MAX_VALUE;

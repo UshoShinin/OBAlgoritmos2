@@ -26,16 +26,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno registrarUsuario(String email, String nombre, String password) {
-		//valido el mail 
-		if(!Usuario.validarMail(email)) {
-			return new Retorno(Resultado.ERROR_1);
-		}
-		//valido que el usuario no exista ya
-		if(Usuarios.buscarUsuario(email) != null) {
-			return new Retorno(Resultado.ERROR_2);
-		}
-		Usuarios.insertar(new Usuario(nombre,email,password));
-		return new Retorno(Resultado.OK);
+		return Usuarios.insertar(new Usuario(nombre,email,password));
 	}
 
 	@Override
@@ -82,14 +73,15 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno deliveryMasCercano(double coordXi, double coordYi) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		return Grafo.deliveryMasCercano(coordXi, coordYi);
 	}
 
 	@Override
 	public Retorno caminoMinimoMovil(double coordXi, double coordYi, double coordXf, double coordYf, String email) {
 		//esto simplemente es para probar, asi que veamos que pasa. Obviamente vamos a cambiarlo con ivan el ssabado
-		System.out.println(Grafo.costoCaminoMinimoMovil(coordXi, coordYi, coordXf, coordYf, email)); 
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		Usuario user = Usuarios.buscarUsuarioSimple(email);
+		 
+		return Grafo.costoCaminoMinimoMovil(coordXi, coordYi, coordXf, coordYf, user);
 	}
 
 	@Override

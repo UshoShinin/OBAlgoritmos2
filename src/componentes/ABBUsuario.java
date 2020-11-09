@@ -1,5 +1,6 @@
 package componentes;
 import uy.edu.ort.obli.Retorno;
+import uy.edu.ort.obli.Retorno.Resultado;
 public class ABBUsuario {
 
 	//Atributos ABBUsuario
@@ -19,41 +20,51 @@ public class ABBUsuario {
 	
 	
 	//Metodos para insertar, buscar y esas cosas
-	public void insertar(Usuario u) {
-		if (this.raiz == null) {
+	public Retorno insertar(Usuario u) {
+		if(!Usuario.validarMail(u.getEmail())) {
+			return new Retorno(Resultado.ERROR_1);
+		}
+		if (this.raiz == null) { 
 			this.raiz = new NodoUsuario(u);
+			return new Retorno(Resultado.OK);
+			
 		}else{
 			if(buscarUsuario(u.getEmail())==null) {
-				insertar(u, this.raiz);
+				return insertar(u, this.raiz);
 			}else {
-				//REtorno d error
+				return new Retorno(Resultado.ERROR_2);
 			}
 			
 		}
+		
 	}
 	
-	private void insertar(Usuario u, NodoUsuario nu) {
+	private Retorno insertar(Usuario u, NodoUsuario nu) {
 		if(u.compareTo(nu.getUsu()) > 0) {
 			if(nu.getDrc() == null) {
 				nu.setDrc(new NodoUsuario(u));
+				return new Retorno(Resultado.OK);
 			}else {
-				insertar(u, nu.getDrc());
+				return insertar(u, nu.getDrc());
 			}
 		} else {
 			if(nu.getIzq() == null) {
 				nu.setIzq(new NodoUsuario(u));
+				return new Retorno(Resultado.OK);
 			}else {
-				insertar(u, nu.getIzq());
+				return insertar(u, nu.getIzq());
 			}
 		}
 	}
 	
 	public Retorno buscarUsuario(String email) {
-		if(this.raiz == null) {
+		
+		if(raiz == null) {
 			return null;
 		}
 		//Creo un usuario auxiliar para facilitar las comparaciones
 		Usuario aux = new Usuario(email);
+		
 		return buscarUsuario(aux, this.raiz,1);
 	}
 	
