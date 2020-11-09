@@ -278,6 +278,68 @@ public class GrafoMatriz {
 		}
 		return posMasBarata;
 	}
+
+	
+	public Retorno caminoMinimoDelivery(double codXi, double codYi, double codXf, double codYf) {
+		Retorno ret = new Retorno(Retorno.Resultado.OK);
+		movilesDisponibles();
+		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
+		int[] minutos = new int[cantDir];
+		boolean[] visitados = new boolean[cantDir];
+		int posDireccionInicial = buscarDireccion(codXi, codYi);
+		int posDireccionDestino = buscarDireccion(codXf, codYf);
+		//Verifico que las direcciones existan
+		if(posDireccionInicial == -1 || posDireccionDestino == -1) {
+			ret.resultado = Retorno.Resultado.ERROR_1;
+			return ret;
+		}
+		int[] anteriores = new int[cantDir];
+		//Arranque
+		visitados[posDireccionInicial] = true;
+		for (int i = 0; i < cantDir; i++) {
+			if(MatrizCostos[posDireccionInicial][i].existe) {
+				minutos[i] = MatrizCostos[posDireccionInicial][i].tiempo;
+			}else if(MatrizCostos[i][posDireccionInicial].existe){
+				minutos[i] = MatrizCostos[i][posDireccionInicial].tiempo;
+			}else {
+				minutos[i] = Integer.MAX_VALUE;
+			}
+		}
+		int w = direccionMasBarataSinVisitar(visitados, minutos);
+		anteriores[w]=posDireccionInicial;
+		//Visitamos todos
+		while(direccionesSinVisitar(visitados)) {
+			w = direccionMasBarataSinVisitar(visitados, minutos);
+			if(w == -1) {
+				return new Retorno(Retorno.Resultado.ERROR_3,-1,"");
+			}
+			visitados[w] = true;
+			for (int i = 0; i < cantDir; i++) {
+				int peso = -1;
+				if(MatrizCostos[w][i].existe) {
+					peso = MatrizCostos[w][i].tiempo;
+				}else if(MatrizCostos[i][w].existe) {
+					peso = MatrizCostos[i][w].tiempo;
+				}
+				if(peso!=-1 && !visitados[i]) {
+					minutos[i] = Math.min(minutos[i], minutos[w] + peso);
+					anteriores[i]=w;
+				}
+			}	
+		}
+		//visite todas las direcciones
+		String Ruta="";
+		int punto = posDireccionDestino;
+		while(punto!=posDireccionInicial) {
+			Ruta = Nodos[punto].codX + ";" + Nodos[punto].codY + "|" + Ruta;
+			punto = anteriores[punto];
+		}
+		Ruta = Nodos[punto].codX + ";" + Nodos[punto].codY + "|" + Ruta;
+		ret.valorEntero = minutos[posDireccionDestino];
+		ret.valorString = Ruta;
+		//guardo la direccion para el usuario
+		return ret;
+	}
 	
 }
 

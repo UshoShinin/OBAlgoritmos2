@@ -66,30 +66,28 @@ public class ParaProbar {
 		
 		sistema.registrarTramo(1, 1, 1, 2, 1, 1); // 0 - 1
 		sistema.registrarTramo(1, 2, 1, 3, 10, 10);// 1 - 2
-		sistema.registrarTramo(1, 3, 1, 4, 1, 10);// 2 - 3
+		sistema.registrarTramo(1, 3, 1, 4, 1, 4);// 2 - 3
 		
-		sistema.registrarTramo(1, 2, 2, 2, 2, 10);// 1 - 5
-		sistema.registrarTramo(1, 4, 2, 4, 1, 10);// 3 - 7
+		sistema.registrarTramo(1, 2, 2, 2, 2, 3);// 1 - 5
+		sistema.registrarTramo(1, 4, 2, 4, 1, 2);// 3 - 7
 		
-		sistema.registrarTramo(2, 1, 2, 2, 2, 10);// 4 - 5
-		sistema.registrarTramo(2, 2, 2, 3, 1, 10);// 5 - 6
+		sistema.registrarTramo(2, 1, 2, 2, 2, 4);// 4 - 5
+		sistema.registrarTramo(2, 2, 2, 3, 1, 160);// 5 - 6
 		
-		sistema.registrarTramo(2, 1, 3, 1, 3, 10);// 4 - 8
-		sistema.registrarTramo(2, 3, 3, 3, 4, 10);// 6 - 10
-		sistema.registrarTramo(2, 4, 3, 4, 1, 10);// 7 - 11
+		sistema.registrarTramo(2, 1, 3, 1, 3, 1);// 4 - 8
+		sistema.registrarTramo(2, 3, 3, 3, 4, 4);// 6 - 10
+		sistema.registrarTramo(2, 4, 3, 4, 1, 5);// 7 - 11
 		
-		sistema.registrarTramo(3, 1, 3, 2, 1, 10);// 8 - 9
+		sistema.registrarTramo(3, 1, 3, 2, 1, 6);// 8 - 9
 
-		sistema.registrarTramo(3, 2, 4, 2, 60, 10);// 9 - 13
-		sistema.registrarTramo(3, 3, 4, 3, 2, 10);// 10 - 14
+		sistema.registrarTramo(3, 2, 4, 2, 60, 2);// 9 - 13
+		sistema.registrarTramo(3, 3, 4, 3, 2, 1);// 10 - 14
 		
-		sistema.registrarTramo(4, 1, 4, 2, 2, 10);// 12 - 13
-		sistema.registrarTramo(4, 2, 4, 3, 3, 10);// 13 - 14
-		sistema.registrarTramo(4, 3, 4, 4, 2, 10);// 14 - 15
+		sistema.registrarTramo(4, 1, 4, 2, 2, 5);// 12 - 13
+		sistema.registrarTramo(4, 2, 4, 3, 3, 2);// 13 - 14
+		sistema.registrarTramo(4, 3, 4, 4, 2, 6);// 14 - 15
 		
-		System.out.println(sistema.deliveryMasCercano(4, 1));
-		System.out.println(sistema.deliveryMasCercano(4, 1));
-		System.out.println(sistema.deliveryMasCercano(4, 1));
+		System.out.println(sistema.caminoMinimoDelivery(1, 1, 2, 3));
 		
 
 		

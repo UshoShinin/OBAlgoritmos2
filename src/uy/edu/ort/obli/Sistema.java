@@ -86,7 +86,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno caminoMinimoDelivery(double coordXi, double coordYi, double coordXf, double coordYf) {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		return Grafo.caminoMinimoDelivery(coordXi,coordYi,coordXf,coordYf);
 	}
 
 	@Override
