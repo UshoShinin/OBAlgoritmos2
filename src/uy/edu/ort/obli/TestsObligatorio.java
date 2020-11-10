@@ -339,11 +339,11 @@ public class TestsObligatorio {
 	@Test
 	public void testMovilMasCercanoOK1() {
 		
-		sistema.inicializarSistema(10);
+		sistema.inicializarSistema(11);
 		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
 		sistema.registrarDelivery("4", 4.0, 4.0);
 		sistema.registrarMovil("7", 7.0, 7.0);
-		sistema.registrarDelivery("10", 11.0, 11.0);
+		sistema.registrarDelivery("10", 10.0, 10.0);
 		sistema.registrarMovil("11", 11.0, 11.0);
 		sistema.registrarEsquina(1.0, 1.0);
 		sistema.registrarEsquina(2.0, 2.0);
@@ -361,6 +361,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(3.0, 3.0, 11.0, 11.0, 19, 19);
 		sistema.registrarTramo(4.0, 4.0, 5.0, 5.0, 14, 14);
 		sistema.registrarTramo(5.0, 5.0, 6.0, 6.0, 6, 6);
+		sistema.registrarTramo(6.0, 6.0, 5.0, 5.0, 6, 6); //doble
 		sistema.registrarTramo(5.0, 5.0, 8.0, 8.0, 1, 1);
 		sistema.registrarTramo(6.0, 6.0, 9.0, 9.0, 3, 3);
 		sistema.registrarTramo(7.0, 7.0, 8.0, 8.0, 8, 8);
@@ -393,11 +394,11 @@ public class TestsObligatorio {
 	@Test
 	public void testMovilMasCercanoError2() {
 		
-		sistema.inicializarSistema(10);
+		sistema.inicializarSistema(11);
 		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
 		sistema.registrarDelivery("4", 4.0, 4.0);
 		sistema.registrarMovil("7", 7.0, 7.0);
-		sistema.registrarDelivery("10", 11.0, 11.0);
+		sistema.registrarDelivery("10", 10.0, 10.0);
 		sistema.registrarMovil("11", 11.0, 11.0);
 		sistema.registrarEsquina(1.0, 1.0);
 		sistema.registrarEsquina(2.0, 2.0);
@@ -415,6 +416,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(3.0, 3.0, 11.0, 11.0, 19, 19);
 		sistema.registrarTramo(4.0, 4.0, 5.0, 5.0, 14, 14);
 		sistema.registrarTramo(5.0, 5.0, 6.0, 6.0, 6, 6);
+		sistema.registrarTramo(6.0, 6.0, 5.0, 5.0, 6, 6); //doble
 		sistema.registrarTramo(5.0, 5.0, 8.0, 8.0, 1, 1);
 		sistema.registrarTramo(6.0, 6.0, 9.0, 9.0, 3, 3);
 		sistema.registrarTramo(7.0, 7.0, 8.0, 8.0, 8, 8);
@@ -440,11 +442,11 @@ public class TestsObligatorio {
 	@Test
 	public void testDeliveryMasCercanoOK1() {
 		
-		sistema.inicializarSistema(10);
+		sistema.inicializarSistema(11);
 		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
 		sistema.registrarDelivery("4", 4.0, 4.0);
 		sistema.registrarMovil("7", 7.0, 7.0);
-		sistema.registrarDelivery("10", 11.0, 11.0);
+		sistema.registrarDelivery("10", 10.0, 10.0);
 		sistema.registrarMovil("11", 11.0, 11.0);
 		sistema.registrarEsquina(1.0, 1.0);
 		sistema.registrarEsquina(2.0, 2.0);
@@ -462,6 +464,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(3.0, 3.0, 11.0, 11.0, 19, 19);
 		sistema.registrarTramo(4.0, 4.0, 5.0, 5.0, 14, 14);
 		sistema.registrarTramo(5.0, 5.0, 6.0, 6.0, 6, 6);
+		sistema.registrarTramo(6.0, 6.0, 5.0, 5.0, 6, 6); //doble
 		sistema.registrarTramo(5.0, 5.0, 8.0, 8.0, 1, 1);
 		sistema.registrarTramo(6.0, 6.0, 9.0, 9.0, 3, 3);
 		sistema.registrarTramo(7.0, 7.0, 8.0, 8.0, 8, 8);
@@ -474,12 +477,12 @@ public class TestsObligatorio {
 		retorno = sistema.deliveryMasCercano(1.0, 1.0);
 		assertEquals(Retorno.Resultado.OK, retorno.resultado);
 		assertEquals(1, retorno.valorEntero);
-		assertEquals("4.0;4.0", retorno.valorEntero);
+		assertEquals("4.0;4.0", retorno.valorString);
 
 		retorno = sistema.deliveryMasCercano(1.0, 1.0);
 		assertEquals(Retorno.Resultado.OK, retorno.resultado);
 		assertEquals(5, retorno.valorEntero);
-		assertEquals("10.0;10.0", retorno.valorEntero);
+		assertEquals("10.0;10.0", retorno.valorString);
 		
 	}
 
@@ -496,11 +499,11 @@ public class TestsObligatorio {
 	@Test
 	public void testDeliveryMasCercanoError2() {
 		
-		sistema.inicializarSistema(10);
+		sistema.inicializarSistema(11);
 		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
 		sistema.registrarDelivery("4", 4.0, 4.0);
 		sistema.registrarMovil("7", 7.0, 7.0);
-		sistema.registrarDelivery("10", 11.0, 11.0);
+		sistema.registrarDelivery("10", 10.0, 10.0);
 		sistema.registrarMovil("11", 11.0, 11.0);
 		sistema.registrarEsquina(1.0, 1.0);
 		sistema.registrarEsquina(2.0, 2.0);
@@ -518,6 +521,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(3.0, 3.0, 11.0, 11.0, 19, 19);
 		sistema.registrarTramo(4.0, 4.0, 5.0, 5.0, 14, 14);
 		sistema.registrarTramo(5.0, 5.0, 6.0, 6.0, 6, 6);
+		sistema.registrarTramo(6.0, 6.0, 5.0, 5.0, 6, 6); //doble
 		sistema.registrarTramo(5.0, 5.0, 8.0, 8.0, 1, 1);
 		sistema.registrarTramo(6.0, 6.0, 9.0, 9.0, 3, 3);
 		sistema.registrarTramo(7.0, 7.0, 8.0, 8.0, 8, 8);
@@ -529,12 +533,12 @@ public class TestsObligatorio {
 		retorno = sistema.deliveryMasCercano(1.0, 1.0);
 		assertEquals(Retorno.Resultado.OK, retorno.resultado);
 		assertEquals(1, retorno.valorEntero);
-		assertEquals("4.0;4.0", retorno.valorEntero);
+		assertEquals("4.0;4.0", retorno.valorString);
 
 		retorno = sistema.deliveryMasCercano(1.0, 1.0);
 		assertEquals(Retorno.Resultado.OK, retorno.resultado);
 		assertEquals(5, retorno.valorEntero);
-		assertEquals("10.0;10.0", retorno.valorEntero);
+		assertEquals("10.0;10.0", retorno.valorString);
 
 		retorno = sistema.deliveryMasCercano(1.0, 1.0);
 		assertEquals(Retorno.Resultado.ERROR_2, retorno.resultado);
@@ -544,12 +548,12 @@ public class TestsObligatorio {
 	@Test
 	public void testCaminoMinimoMovilOK1() {
 		
-		sistema.inicializarSistema(10);
+		sistema.inicializarSistema(11);
 		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
 		sistema.registrarMovil("1", 1.0, 1.0);
 		sistema.registrarDelivery("4", 4.0, 4.0);
 		sistema.registrarMovil("7", 7.0, 7.0);
-		sistema.registrarDelivery("10", 11.0, 11.0);
+		sistema.registrarDelivery("10", 10.0, 10.0);
 		sistema.registrarMovil("11", 11.0, 11.0);
 		sistema.registrarEsquina(2.0, 2.0);
 		sistema.registrarEsquina(3.0, 3.0);
@@ -566,6 +570,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(3.0, 3.0, 11.0, 11.0, 19, 9999);
 		sistema.registrarTramo(4.0, 4.0, 5.0, 5.0, 14, 9999);
 		sistema.registrarTramo(5.0, 5.0, 6.0, 6.0, 6, 9999);
+		sistema.registrarTramo(6.0, 6.0, 5.0, 5.0, 6, 6); //doble
 		sistema.registrarTramo(5.0, 5.0, 8.0, 8.0, 1, 9999);
 		sistema.registrarTramo(6.0, 6.0, 9.0, 9.0, 3, 9999);
 		sistema.registrarTramo(7.0, 7.0, 8.0, 8.0, 8, 9999);
@@ -575,7 +580,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(9.0, 9.0, 10.0, 10.0, 4, 9999);
 		
 
-		retorno = sistema.caminoMinimoMovil(1.0, 1.0, 7.0, 7.0,"CAP1891@gmail.com");
+		retorno = sistema.caminoMinimoMovil(1.0, 1.0, 7.0, 7.0, "CAP1891@gmail.com");
 		assertEquals(Retorno.Resultado.OK, retorno.resultado);
 		assertEquals(23, retorno.valorEntero);
 		assertEquals("1.0;1.0|2.0;2.0|3.0;3.0|6.0;6.0|5.0;5.0|8.0;8.0|7.0;7.0", retorno.valorString);
@@ -588,11 +593,11 @@ public class TestsObligatorio {
 		sistema.inicializarSistema(10);
 
 		sistema.registrarMovil("1", 1.0, 1.0);
-		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
-		retorno = sistema.caminoMinimoMovil(1.0, 1.0, 2.0, 2.0,"CAP1891@gmail.com");
+
+		retorno = sistema.caminoMinimoMovil(1.0, 1.0, 2.0, 2.0, "CAP1891@gmail.com");
 		assertEquals(Retorno.Resultado.ERROR_1, retorno.resultado);
 		
-		retorno = sistema.caminoMinimoMovil(2.0, 2.0, 1.0, 1.0,"CAP1891@gmail.com");
+		retorno = sistema.caminoMinimoMovil(2.0, 2.0, 1.0, 1.0, "CAP1891@gmail.com");
 		assertEquals(Retorno.Resultado.ERROR_1, retorno.resultado);
 		
 	}
@@ -600,12 +605,12 @@ public class TestsObligatorio {
 	@Test
 	public void testCaminoMinimoDeliveryOK1() {
 		
-		sistema.inicializarSistema(10);
+		sistema.inicializarSistema(11);
 		sistema.registrarUsuario("CAP1891@gmail.com", "Omar", "HolaSoyOmar1891");
 		sistema.registrarDelivery("1", 1.0, 1.0);
 		sistema.registrarDelivery("4", 4.0, 4.0);
 		sistema.registrarMovil("7", 7.0, 7.0);
-		sistema.registrarDelivery("10", 11.0, 11.0);
+		sistema.registrarDelivery("10", 10.0, 10.0);
 		sistema.registrarMovil("11", 11.0, 11.0);
 		sistema.registrarEsquina(2.0, 2.0);
 		sistema.registrarEsquina(3.0, 3.0);
@@ -622,6 +627,7 @@ public class TestsObligatorio {
 		sistema.registrarTramo(3.0, 3.0, 11.0, 11.0, 9999, 19);
 		sistema.registrarTramo(4.0, 4.0, 5.0, 5.0, 9999, 14);
 		sistema.registrarTramo(5.0, 5.0, 6.0, 6.0, 9999, 6);
+		sistema.registrarTramo(6.0, 6.0, 5.0, 5.0, 6, 6); //doble
 		sistema.registrarTramo(5.0, 5.0, 8.0, 8.0, 9999, 1);
 		sistema.registrarTramo(6.0, 6.0, 9.0, 9.0, 9999, 3);
 		sistema.registrarTramo(7.0, 7.0, 8.0, 8.0, 9999, 8);

@@ -31,7 +31,7 @@ public abstract class Direccion {
 	}
 	*/
 	public String toString() {
-		return "X:" + codX + " Y:" + codY;
+		return codX + ";"  + codY;
 	}
 	
 	

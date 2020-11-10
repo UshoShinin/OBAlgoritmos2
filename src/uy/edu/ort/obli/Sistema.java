@@ -2,6 +2,10 @@ package uy.edu.ort.obli;
 
 import uy.edu.ort.obli.Retorno.Resultado;
 import componentes.*;
+
+import java.awt.Desktop;
+import java.net.URL;
+
 import Grafo.*;
 public class Sistema implements ISistema {
 	
@@ -21,7 +25,9 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno destruirSistema() {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		Usuarios = null;
+		Grafo = null;
+		return new Retorno(Resultado.OK);
 	}
 
 	@Override
@@ -91,7 +97,13 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno dibujarMapa() {
-		return new Retorno(Resultado.NO_IMPLEMENTADA);
+		String url = Grafo.generarStringMapa();
+		try {
+		  Desktop.getDesktop().browse(new URL(url).toURI());
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+		return new Retorno(Resultado.OK);
 	}
 
 }

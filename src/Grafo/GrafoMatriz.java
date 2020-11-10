@@ -104,7 +104,7 @@ public class GrafoMatriz {
 	
 	public Retorno movilMasCercano(double codXi, double codYi) {
 		Retorno ret = new Retorno(Retorno.Resultado.OK);
-		movilesDisponibles();
+		//movilesDisponibles();
 		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
 		int[] metros = new int[cantDir];
 		boolean[] visitados = new boolean[cantDir];
@@ -232,7 +232,7 @@ public class GrafoMatriz {
 		}
 		Ruta = Nodos[punto].codX + ";" + Nodos[punto].codY + "|" + Ruta;
 		ret.valorEntero = metros[posDireccionDestino];
-		ret.valorString = Ruta;
+		ret.valorString = Ruta.substring(0, Ruta.length()-1);
 		//guardo la direccion para el usuario
 		U.agregarDireccion(Nodos[posDireccionDestino]);
 		return ret;
@@ -282,7 +282,7 @@ public class GrafoMatriz {
 	
 	public Retorno caminoMinimoDelivery(double codXi, double codYi, double codXf, double codYf) {
 		Retorno ret = new Retorno(Retorno.Resultado.OK);
-		movilesDisponibles();
+		//movilesDisponibles();
 		//aca llamo al metodo de movil mas cercano para que vea si hay algun movil disponible
 		int[] minutos = new int[cantDir];
 		boolean[] visitados = new boolean[cantDir];
@@ -336,8 +336,32 @@ public class GrafoMatriz {
 		}
 		Ruta = Nodos[punto].codX + ";" + Nodos[punto].codY + "|" + Ruta;
 		ret.valorEntero = minutos[posDireccionDestino];
-		ret.valorString = Ruta;
+		ret.valorString = Ruta.substring(0, Ruta.length()-1);
 		//guardo la direccion para el usuario
+		return ret;
+	}
+	
+	public String generarStringMapa() {
+		String ret = "http://maps.googleapis.com/maps/api/staticmap?center=Montevideo,Uruguay&zoom=13&size=1200x600&maptype=roadmap&";
+		for (Direccion d : Nodos) {
+			String color = "markers=color:green";
+			//Consulto si esa direccion es un delivery
+			if (d.getClass().getName()=="Grafo.Delivery") {
+				Delivery del = (Delivery)d;
+				if(del.ocupado) {
+					color = "markers=color:red";
+				}
+				ret += (color + "%7Clabel:D%7C-" + d.codX + "," + d.codY + "&");
+			}
+			//Consulto si esa direccion es un movil
+			if (d.getClass().getName()=="Grafo.Movil") {
+				Movil mov = (Movil)d;
+				if(mov.ocupado) {
+					color = "markers=color:red";
+				}
+				ret += (color + "%7Clabel:M%7C-" + d.codX + "," + d.codY + "&");
+			}
+		}
 		return ret;
 	}
 	

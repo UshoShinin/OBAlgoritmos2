@@ -83,14 +83,15 @@ public class ABBUsuario {
 	}
 	
 	public String Listar() {
-		return Listar(this.raiz);
+		String ret = Listar(this.raiz);
+		ret = ret.substring(0, ret.length()-1);
+		return ret;
 	}
 	
 	private String Listar(NodoUsuario n) {
 		String nombre = "";
 		if(n!=null) {
-			nombre  +=  Listar(n.getIzq()) + n.getUsu().toString()+"\n" + Listar(n.getDrc());
-			
+			nombre  +=  Listar(n.getIzq()) + n.getUsu().toString()+"|" + Listar(n.getDrc());
 			return nombre;
 		}
 		return nombre;
